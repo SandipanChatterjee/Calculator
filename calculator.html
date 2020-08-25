@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        width: 500px;
+        margin: 4% auto;
+        font-size: 1rem;
+      }
+      .calculator {
+        border: 1px solid #ddd;
+        padding: 0.5rem;
+      }
+      .input {
+        border: 1px solid #ddd;
+        height: 60px;
+        padding-top: 5px;
+        padding-right: 5px;
+        text-align: right;
+        margin-right: 6px;
+        overflow-x: auto;
+        font-size: 2rem;
+      }
+      .operators div {
+        display: inline-block;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-top: 5px;
+        cursor: pointer;
+        width: 80px;
+        text-align: center;
+        background-color: #ddd;
+      }
+      .left-panel .numbers div {
+        display: inline-block;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 5px 0;
+        cursor: pointer;
+        width: 80px;
+        text-align: center;
+      }
+
+      .numbers div:hover {
+        background-color: #808080;
+      }
+
+      .equal {
+        display: inline-block;
+        vertical-align: top;
+        border: 1px solid #ddd;
+        padding: 10px;
+        cursor: pointer;
+        width: 80px;
+        text-align: center;
+        background-color: #4d90fe;
+        color: #fff;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <html>
+      <body>
+        <div class="calculator">
+          <div class="input" id="input"></div>
+          <div class="operators">
+            <div>+</div>
+            <div>-</div>
+            <div>*</div>
+            <div>/</div>
+          </div>
+          <div class="left-panel">
+            <div class="numbers">
+              <div>7</div>
+              <div>8</div>
+              <div>9</div>
+            </div>
+            <div class="numbers">
+              <div>4</div>
+              <div>5</div>
+              <div>6</div>
+            </div>
+            <div class="numbers">
+              <div>1</div>
+              <div>2</div>
+              <div>3</div>
+            </div>
+            <div class="numbers">
+              <div>0</div>
+              <div>.</div>
+              <div>C</div>
+            </div>
+          </div>
+          <div class="equal" id="result">
+            <div>=</div>
+          </div>
+        </div>
+      </body>
+    </html>
+    <script>
+      let input = document.querySelector(".input");
+      let numbers = document.querySelectorAll(".numbers div");
+      let result = document.getElementById("result");
+      let operation = document.querySelectorAll(".operators div");
+      //add clickhandler to number btns
+      for (let i = 0; i < numbers.length; i++) {
+        numbers[i].addEventListener("click", (e) => {
+          if (e.target.innerHTML === "C") {
+            input.innerHTML = "";
+          } else {
+            input.innerHTML += e.target.innerHTML;
+          }
+        });
+      }
+
+      //add clickHandlers to operation btn
+      for (let i = 0; i < operation.length; i++) {
+        operation[i].addEventListener("click", (e) => {
+          input.innerHTML += e.target.innerHTML;
+        });
+      }
+
+      //add clickHandler to equal btn
+      result.addEventListener("click", (e) => {
+        input.innerHTML = eval(input.innerHTML);
+      });
+    </script>
+  </body>
+</html>
